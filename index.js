@@ -75,7 +75,14 @@ function parseObject(input, at) {
   if (err) return [ err ];
   if (input[newAt] !== '}')
     return [ new ParseError(input, at, 'Expected "}"') ];
-  return [ err, Object.fromEntries(members), newAt + 1 ];
+  return [ err, ObjectFromEntries(members), newAt + 1 ];
+}
+
+function ObjectFromEntries(entries) {
+  const ret = {};
+  for (const [ key, value ] of entries)
+    ret[key] = value;
+  return ret;
 }
 
 function parseMembers(input, at) {
