@@ -1,0 +1,28 @@
+{
+  "name": "gyp-parser",
+  "version": "1.0.0",
+  "description": "GYP file format parser in JS",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test.js",
+    "build": "gen-esm-wrapper . ./.esm-wrapper.mjs",
+    "prepack": "npm run build"
+  },
+  "keywords": [
+    "gyp",
+    "parser",
+    "json"
+  ],
+  "author": "Anna Henningsen <anna@addaleax.net>",
+  "license": "MIT",
+  "files": [
+    "index.js",
+    "index.d.ts",
+    ".esm-wrapper.mjs",
+    "LICENSE",
+    "README"
+  ],
+  "devDependencies": {
+    "gen-esm-wrapper": "^1.1.0"
+  }
+}
