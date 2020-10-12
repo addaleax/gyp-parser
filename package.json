@@ -3,6 +3,10 @@
   "version": "1.0.1",
   "description": "GYP file format parser in JS",
   "main": "index.js",
+  "exports": {
+    "require": "./index.js",
+    "import": "./.esm-wrapper.mjs"
+  },
   "scripts": {
     "test": "node test.js",
     "build": "gen-esm-wrapper . ./.esm-wrapper.mjs",
