@@ -176,11 +176,11 @@ function parseString(input, at) {
   if (input[at] !== '"' && input[at] !== "'")
     return [ new ParseError(input, at, 'Expected \' or "') ];
   const type = input[at++];
+  const cr = String.fromCodePoint(0x0D);
+  const lf = String.fromCodePoint(0x0A);
   let value = '';
   while (input[at] !== type) {
     if (input[at] === '\\') {
-      const cr = String.fromCodePoint(0x0D);
-      const lf = String.fromCodePoint(0x0A);
       switch (input[++at]) {
         case '"':
         case "'":
