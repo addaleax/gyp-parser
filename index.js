@@ -179,6 +179,8 @@ function parseString(input, at) {
   let value = '';
   while (input[at] !== type) {
     if (input[at] === '\\') {
+      const cr = String.fromCodePoint(0x0D);
+      const lf = String.fromCodePoint(0x0A);
       switch (input[++at]) {
         case '"':
         case "'":
@@ -208,7 +210,18 @@ function parseString(input, at) {
           value += String.fromCodePoint(parseInt(hexString, 16));
           at += 2;
           break;
-        } default:
+        }
+        case cr:
+          if (input[at + 1] === lf) {
+            at += 2;
+          } else {
+            at++;
+          }
+          break;
+        case lf:
+          at++;
+          break;
+        default:
           return [ new ParseError(input, at, 'Unknown escape character') ];
       }
     } else {
