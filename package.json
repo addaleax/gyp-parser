@@ -1,6 +1,6 @@
 {
   "name": "gyp-parser",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "description": "GYP file format parser in JS",
   "main": "index.js",
   "scripts": {
