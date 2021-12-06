@@ -176,8 +176,6 @@ function parseString(input, at) {
   if (input[at] !== '"' && input[at] !== "'")
     return [ new ParseError(input, at, 'Expected \' or "') ];
   const type = input[at++];
-  const cr = String.fromCodePoint(0x0D);
-  const lf = String.fromCodePoint(0x0A);
   let value = '';
   while (input[at] !== type) {
     if (input[at] === '\\') {
@@ -211,14 +209,14 @@ function parseString(input, at) {
           at += 2;
           break;
         }
-        case cr:
-          if (input[at + 1] === lf) {
+        case '\r':
+          if (input[at + 1] === '\n') {
             at += 2;
           } else {
             at++;
           }
           break;
-        case lf:
+        case '\n':
           at++;
           break;
         default:
