@@ -22,6 +22,10 @@
     "LICENSE",
     "README"
   ],
+  "exports": {
+    "require": "./index.js",
+    "import": "./.esm-wrapper.mjs"
+  },
   "devDependencies": {
     "gen-esm-wrapper": "^1.1.0"
   }
