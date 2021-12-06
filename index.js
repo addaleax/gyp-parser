@@ -208,7 +208,18 @@ function parseString(input, at) {
           value += String.fromCodePoint(parseInt(hexString, 16));
           at += 2;
           break;
-        } default:
+        }
+        case '\r':
+          if (input[at + 1] === '\n') {
+            at += 2;
+          } else {
+            at++;
+          }
+          break;
+        case '\n':
+          at++;
+          break;
+        default:
           return [ new ParseError(input, at, 'Unknown escape character') ];
       }
     } else {
