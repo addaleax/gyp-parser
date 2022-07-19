@@ -242,8 +242,18 @@ function parseString(input, at) {
 
 function parseNumber(input, at) {
   if (input[at] === '+') at++;
+  if (input[at] === '0' && input[at + 1] === 'x') {
+    at += 2;
+    const m = input.slice(at).match(/^([0-9a-fA-F]+)/);
+    if (!m) {
+      return [ new ParseError(input, at, 'Expected hexadecimal number') ];
+    }
+    return [ null, parseInt(m[0], 16), at + m[0].length ];
+  }
   const m = input.slice(at).match(/^[-]?([1-9][0-9]+|[0-9])(\.[0-9]*)?([eE][+-][0-9]+)?/);
-  if (!m) return [ new ParseError(input, at, 'Expected number') ];
+  if (!m) {
+    return [ new ParseError(input, at, 'Expected number') ];
+  }
   return [ null, JSON.parse(m[0]), at + m[0].length ];
 }
 
